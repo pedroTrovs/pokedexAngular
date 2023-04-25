@@ -1,0 +1,13 @@
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{image}}.png" alt="Card image cap">
+  <div class="card-body">
+        <h5 class="card-title">{{pokemon.name | titlecase}}, {{image}}</h5>
+    <p class="card-text">This is a Pokémon of types
+      <span *ngFor="let currentTypes of pokemon.types"> - {{currentTypes.type.name}}</span>
+    </p>
+    <button class="btn btn-primary" (click)="go('forth')">Next</button>
+    <button class="btn btn-primary" (click)="go('back')">Previous</button>
+    <p class="card-text">Height:{{pokemon.height}}</p>
+    <p class="card-text">Weight:{{pokemon.weight}}</p>
+  </div>
+</div>
