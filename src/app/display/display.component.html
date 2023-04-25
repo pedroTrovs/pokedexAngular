@@ -9,5 +9,20 @@
     <button class="btn btn-primary" (click)="go('back')">Previous</button>
     <p class="card-text">Height:{{pokemon.height}}</p>
     <p class="card-text">Weight:{{pokemon.weight}}</p>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let currentAbilities of pokemon.abilities">
+          <th scope="row">{{currentAbilities.type.slot}}</th>
+          <td>{{currentAbilities.type.name | titlecase}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

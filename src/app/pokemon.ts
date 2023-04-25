@@ -3,11 +3,19 @@ export interface Pokemon{
   name: string;
   height: number;
   weight: number;
+  abilities: [
+    {
+      ability:{
+        name: string;
+      },
+      slot: number;
+    }
+  ];
   types: [
     {
       type: {
         name: string;
       }
     }
-  ],
+  ];
 }
