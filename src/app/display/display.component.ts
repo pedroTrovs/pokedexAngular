@@ -1,6 +1,6 @@
+import { Pokemon } from './../pokemon';
 import { FetchService } from './../fetch.service';
 import { Component } from '@angular/core';
-import { Pokemon } from '../pokemon';
 
 @Component({
   selector: 'app-display',
@@ -12,6 +12,8 @@ export class DisplayComponent {
   id! : number;
   query! : number;
   show : boolean = false;
+  fragment!: string;
+  pokemonList!: Pokemon[];
 
   constructor(private service: FetchService) {}
 
@@ -56,6 +58,10 @@ export class DisplayComponent {
   {
     if(direction == "custom")
     {
+      if(this.query > 1008)
+        this.query = 1008;
+      if(this.query < 0)
+        this.query = 1;
       this.id = this.query;
     }
     else
@@ -68,12 +74,12 @@ export class DisplayComponent {
         this.id --;
     }
 
-    if(this.id <= 0)
+    if(this.id == 0)
     {
       this.id = 1008;
     }
 
-    if(this.id >= 1009)
+    if(this.id == 1009)
     {
       this.id = 1;
     }
@@ -85,4 +91,20 @@ export class DisplayComponent {
   {
     this.show = !this.show;
   }
+  getPokemonList()
+  {
+    let i;
+    let list: Pokemon[] = [];
+    for(i = 1; i < 10009; i++)
+    {
+      this.service.getNewPokemon(i).subscribe(
+        {
+          next : data =>  {
+            list[i = 1] = data;
+          }
+        }
+      );
+    }
+  }
+
 }
