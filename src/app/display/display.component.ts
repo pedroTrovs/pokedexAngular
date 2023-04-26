@@ -10,6 +10,7 @@ import { Pokemon } from '../pokemon';
 export class DisplayComponent {
   image! : string;
   id! : number;
+  query! : number;
   show : boolean = false;
 
   constructor(private service: FetchService) {}
@@ -53,19 +54,26 @@ export class DisplayComponent {
 
   go(direction : string)
   {
-    if(direction == "forth")
+    if(direction == "custom")
     {
-      this.id ++;
+      this.id = this.query;
     }
     else
-      this.id --;
+    {
+      if(direction == "forth")
+      {
+        this.id ++;
+      }
+      else
+        this.id --;
+    }
 
-    if(this.id == 0)
+    if(this.id <= 0)
     {
       this.id = 1008;
     }
 
-    if(this.id == 1009)
+    if(this.id >= 1009)
     {
       this.id = 1;
     }
