@@ -18,4 +18,19 @@ export interface Pokemon{
       }
     }
   ];
+  moves: [
+    {
+      move: {
+        name: string;
+      }
+    }
+  ]
+  stats: [
+    {
+      base_stat: number;
+      stat: {
+        name: string;
+      }
+    }
+  ]
 }

@@ -10,6 +10,7 @@ import { Pokemon } from '../pokemon';
 export class DisplayComponent {
   image! : string;
   id! : number;
+  show : boolean = false;
 
   constructor(private service: FetchService) {}
 
@@ -70,5 +71,10 @@ export class DisplayComponent {
     }
 
     this.generate();
+  }
+
+  showStats()
+  {
+    this.show = !this.show;
   }
 }

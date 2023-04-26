@@ -1,28 +1,74 @@
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{image}}.png" alt="Card image cap">
-  <div class="card-body">
-        <h5 class="card-title">{{pokemon.name | titlecase}}, {{image}}</h5>
-    <p class="card-text">This is a Pokémon of types
-      <span *ngFor="let currentTypes of pokemon.types"> - {{currentTypes.type.name}}</span>
-    </p>
-    <button class="btn btn-primary" (click)="go('forth')">Next</button>
-    <button class="btn btn-primary" (click)="go('back')">Previous</button>
-    <p class="card-text">Height:{{pokemon.height}}</p>
-    <p class="card-text">Weight:{{pokemon.weight}}</p>
+<div class="container-md d-flex flex-row mb-3">
+  <div class="card d-flex" style="width: 35rem;">
+    <img class="card-img-top" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{image}}.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{pokemon.name | titlecase}}, {{image}}</h5>
+      <p class="card-text mb-4">This is a Pokémon of types
+        <span *ngFor="let currentTypes of pokemon.types"> - {{currentTypes.type.name}}</span>
+      </p>
+      <div class="d-flex justify-content-center mb-4">
+        <button class="btn btn-primary mx-2" style="width: 110px;" (click)="go('back')">Previous</button>
+        <button class="btn btn-primary mx-2" style="width: 110px;" (click)="go('forth')">Next</button>
+      </div>
+      <div class="card" style="width: 30rem;">
+        <div class="card-body"></div>
+        <div class="d-flex flex-column justify-content-center mx-3">
+          <h5 class="card-title ml-5">Basic info</h5>
+          <p class="card-text mb-3">Height: {{pokemon.height}}</p>
+          <p class="card-text">Weight: {{pokemon.weight}}</p>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let currentAbilities of pokemon.abilities">
-          <th scope="row">{{currentAbilities.type.slot}}</th>
-          <td>{{currentAbilities.type.name | titlecase}}</td>
-        </tr>
-      </tbody>
-    </table>
+          <h5 class="card-title mt-3">Abilities</h5>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Slot</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let currentAbilities of pokemon.abilities">
+                <th scope="row">{{currentAbilities.slot}}</th>
+                <td>{{currentAbilities.ability.name | titlecase}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <button class="btn btn-primary mx-2 my-4" style="width: 110px;" (click)="showStats()">Show stats</button>
+      <table class="table table-striped" [hidden]="!show">
+        <thead>
+          <tr>
+            <th scope="col">Status</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let currentStats of pokemon.stats">
+            <td>{{currentStats.stat.name | titlecase}}</td>
+            <td>{{currentStats.base_stat}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card" style="width: 25rem;">
+    <div class="card-body">
+      <h5 class="card-title"> Possible moves for {{pokemon.name | titlecase}}</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Move</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let currentMoves of pokemon.moves; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{currentMoves.move.name | titlecase}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
