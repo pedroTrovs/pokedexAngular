@@ -12,8 +12,6 @@ export class DisplayComponent {
   id! : number;
   query! : number;
   show : boolean = false;
-  fragment!: string;
-  pokemonList!: Pokemon[];
 
   constructor(private service: FetchService) {}
 
@@ -90,21 +88,6 @@ export class DisplayComponent {
   showStats()
   {
     this.show = !this.show;
-  }
-  getPokemonList()
-  {
-    let i;
-    let list: Pokemon[] = [];
-    for(i = 1; i < 10009; i++)
-    {
-      this.service.getNewPokemon(i).subscribe(
-        {
-          next : data =>  {
-            list[i = 1] = data;
-          }
-        }
-      );
-    }
   }
 
 }
